@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- <input type="text" label="节流" id="debounce" oninput="input1(event)" />
+		
+		
+		
+		<script>
+			function debounce(fn, delatTime){
+				let time = 0;
+				return function(...args){
+					if(time){
+						console.log(time)
+						clearTimeout(time)
+					}
+					time = setTimeout(() => {
+						fn.apply(this, args)
+					},delatTime)
+				}
+			}
+			
+			function input1(e){
+				console.log(val)
+				let val = e.target.value
+				if(val) {
+					console.log("有防抖",val)
+				}
+				// console.log(e.target.value)
+			}
+			
+			debounce(input1, 5000)
+			
+		</script> -->
+		<label for='undebounce'>没防抖:</label>
+		<input type="text" id='undebounce' onInput='onInput2(event)'>
+		<br />
+		<label for="debounce">有防抖:</label>
+		<input type="text" id='debounce' onInput='debounceInput(event)'>
+		<!-- <button onclick="jieliu111">节流</button> -->
+		<!-- <script>
+		        function debounce(fn, delay){
+		            let time = null
+		            return function(...args){
+						// console.log(args)
+						console.log(1111111111,time);
+		                if(time){
+							
+		                    clearTimeout(time)
+		                }
+		                time = setTimeout(()=>{
+							console.log(this);
+							// console.log('----------------',fn.apply(this, args));
+		                    fn.apply(this, args)
+		                },delay)
+		            }
+		        }
+		        function onInput(e){
+					
+		            let val = e.target.value
+					
+		            if(val){
+		                console.log('有防抖',val)
+		            }
+		        }
+		
+		        const debounceInput = debounce(onInput, 1000)
+		
+		        function onInput1(e){
+					
+		            val = e.target.value
+		            if(val){
+		                console.log('没有防抖',val)
+		            }
+		        }
+				const onInput2 = debounce(onInput1, 1000)
+		    </script> -->
+		<script>
+			// 防抖
+			function debounce(fn, delay) {
+				let time = null;
+
+				function newFn(...args) {
+					if (time) clearTimeout(time);
+					time = setTimeout(() => {
+						fn.apply(this, args)
+					}, delay)
+				}
+				return newFn;
+			}
+
+			function onInput(e) {
+				if (e.target.value) {
+					console.log('有防抖');
+				}
+			}
+			const debounceInput = debounce(onInput, 1000)
+
+
+
+			// function jieliu() {
+			// 	console.log('节流');
+			// }
+
+			// function jieshen(fn, delays) {
+			// 	let lastTime = 0;
+				
+			// 	return function(){
+			// 		let nowTime = Date.now();
+			// 		console.log(nowTime,delays);
+			// 		if (nowTime - lastTime > delays) {
+			// 			return fn.apply(this)
+			// 			lastTime = nowTime
+			// 		}
+			// 	}
+			// }
+			// const jieliu111 = function(){
+			// 	console.log(1111);
+			// 	jieshen(jieliu, 600)
+			// } 
+		</script>
+
+	</body>
+</html>
